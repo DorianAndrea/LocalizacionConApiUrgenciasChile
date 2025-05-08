@@ -1,0 +1,86 @@
+# ==============================
+# BACKEND (Python / Flask)
+# ==============================
+__pycache__/
+*.py[cod]
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.db
+instance/
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+
+# ==============================
+# FRONTEND (React - Vite / CRA)
+# ==============================
+
+# Dependencias
+node_modules/
+
+# Builds
+dist/
+build/
+
+# Archivos de lock (pueden incluirse si se desea control de versiones exacto)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos de configuración locales
+.env
+.env.local
+.env.*.local
+.vitepress/dist
+.cache/
+.temp/
+
+# Next.js / Nuxt / Otros frameworks (por si se usa algo más)
+.next/
+.nuxt/
+out/
+
+# Testing y coverage
+coverage/
+*.lcov
+
+# Storybook
+.storybook-out/
+storybook-static/
+
+# Editorconfig caches
+.editorconfig.cache
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==============================
+# SISTEMA (macOS / Windows)
+# ==============================
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

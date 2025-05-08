@@ -1,0 +1,112 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header_User from './components/Header_User';
+import Menu_Ppal from './components/Menu_Ppal';
+import CrearCentro from './components/CrearCentro';
+import ListarCentros from './components/ListarCentros';
+import Register from './components/Register';
+import ListarUsers from './components/ListarUsers';
+import MapaContainer from './components/MapaContainer';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Home from './components/Index';
+import Login from './components/Login';
+import Mision from './components/Mision';
+import Nosotros from './components/Nosotros';
+import Vision from './components/Vision';
+import Centros_Valpo from './components/Centros_Valpo';
+
+
+function App() {
+  // Definir el estado del usuario
+  const [user, setUser] = useState(null);
+  // Definir el estado del drawer
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    // Verificar si hay datos de usuario en el almacenamiento local
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      try {
+        // Intentar analizar los datos del usuario si existen en el almacenamiento local
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error('Error al analizar los datos del usuario:', error);
+        localStorage.removeItem('user'); // esta linea elimina datos corruptos
+        setUser(null);
+      }
+    } else {
+      setUser(null); // Si no hay datos, se asigna null para evitar errores
+    }
+  }, []);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/menu/*" element={
+          <>
+            <Header_User user={user || {}} handleDrawerToggle={handleDrawerToggle} />
+            <Menu_Ppal user={user || {}} />
+            <Footer />
+          </>
+        } />
+        <Route path="/crearCentro/*" element={
+          <>
+            <Header_User user={user || {}} handleDrawerToggle={handleDrawerToggle} />
+            <CrearCentro />
+            <Footer />
+          </>
+        } />
+        <Route path="/listarCentros/*" element={
+          <>
+            <Header_User user={user || {}} handleDrawerToggle={handleDrawerToggle} />
+            <ListarCentros />
+            <Footer />
+          </>
+        } />
+        <Route path="/registro/*" element={
+          <>
+            <Header_User user={user || {}} handleDrawerToggle={handleDrawerToggle}/>
+            <Register />
+            <Footer />
+          </>
+        } />
+        <Route path="/listarUsuarios/*" element={
+          <>
+            <Header_User user={user || {}} handleDrawerToggle={handleDrawerToggle} />
+            <ListarUsers />
+            <Footer />
+          </>
+        } />
+        <Route path="/mapa" element={
+          <>
+            <Header />
+            <MapaContainer />
+            <Footer />
+          </>
+        } />
+        <Route path="/*" element={
+          <div style={{ paddingBottom: '60px' }}>
+            <Header />
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="nosotros" element={<Nosotros />} />
+              <Route path="mision" element={<Mision />} />
+              <Route path="vision" element={<Vision />} />
+              <Route path="login" element={<Login setUser={setUser} />} />
+              <Route path="centros" element={<Centros_Valpo />} />
+            </Routes>
+            <Footer />
+          </div>
+        } />
+      </Routes>
+    </Router>
+  );
+}
+export default App;
