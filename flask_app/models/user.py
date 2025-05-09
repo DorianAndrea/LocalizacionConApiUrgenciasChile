@@ -1,6 +1,6 @@
 from flask_app.config.connectToProgreSql import connectToPostgreSQL
 from flask import flash
-from flask_bcrypt import Bcrypt  # <-- Agregado
+from flask_bcrypt import Bcrypt 
 import re
 
 bcrypt = Bcrypt()  # <-- Instancia para usar bcrypt
@@ -27,6 +27,7 @@ class User:
             'email': self.email,
             'created_at': self.created_at
         }
+    
 
     @classmethod
     def save(cls, data):

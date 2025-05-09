@@ -25,4 +25,6 @@ class Address:
         query = "INSERT INTO address (address, number_add, phone, cell_phone, comuna_id) VALUES (%(address)s, %(number_add)s, %(phone)s, %(cell_phone)s, %(comuna_id)s) RETURNING id;"
         result = connectToPostgreSQL('postgres').query_db(query, data)
         return result
+    
+    
         

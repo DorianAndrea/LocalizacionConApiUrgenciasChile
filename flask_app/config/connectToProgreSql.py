@@ -37,6 +37,7 @@ class PostgreSQLConnection:
                 print(f"Datos enviados: {data}")
                 print(f"Error: {e}")
                 return False
+            
 
 # Función para conectar a PostgreSQL
 def connectToPostgreSQL(db):
