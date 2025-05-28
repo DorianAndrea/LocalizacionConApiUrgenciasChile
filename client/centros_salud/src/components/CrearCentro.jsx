@@ -102,7 +102,7 @@ const CrearCentro = () => {
     if (Object.values(newErrors).some((error) => error !== null)) return;
 
     try {
-      const response = await axios.post('http://127.0.0.1:5173/api/centros', {
+      const response = await axios.post('http://127.0.0.1:5000/api/centros', {
         name_centro: formData.nameCentro,
         pag_web: formData.pagWeb,
         api_link: formData.apiLink,

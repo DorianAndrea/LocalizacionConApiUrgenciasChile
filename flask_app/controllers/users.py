@@ -26,7 +26,7 @@ def register_user():
     }
     
     new_id = User.save(data)
-    print(f"Nuevo ID de usuario: {new_id}")  # Agrega esta línea para depurar
+    print(f"Nuevo ID de usuario: {new_id}") 
     if new_id:
         return jsonify({"id": new_id}), 201
     else:

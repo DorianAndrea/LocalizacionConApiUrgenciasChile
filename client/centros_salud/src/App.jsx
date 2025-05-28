@@ -22,6 +22,7 @@ function App() {
   const [user, setUser] = useState(null);
   // Definir el estado del drawer
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [centrosSalud, setCentrosSalud] = useState([]);
 
   useEffect(() => {
     // Verificar si hay datos de usuario en el almacenamiento local
@@ -41,6 +42,23 @@ function App() {
       setUser(null); // Si no hay datos, se asigna null para evitar errores
     }
   }, []);
+
+  useEffect(() => {
+  fetch("http://localhost:5173/api/urgencia")
+    .then((res) => res.json())
+    .then((data) => {
+      const urgencias = data.map(u => ({
+        nombre: u.nombre || u.name_centro || "Sin nombre",
+        latitud: parseFloat(u.latitud || u.latitude),
+        longitud: parseFloat(u.longitud || u.longitude)
+      })).filter(c => !isNaN(c.latitud) && !isNaN(c.longitud));
+
+      setCentrosSalud(urgencias);
+    })
+    .catch((err) => console.error("Error al obtener centros de salud:", err));
+}, []);
+
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
