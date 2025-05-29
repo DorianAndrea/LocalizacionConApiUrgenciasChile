@@ -6,4 +6,4 @@ from flask_app.models.user import User
 from flask_app.controllers.locate_centers import locate_centers
 
 if __name__=="__main__":
-    app.run(debug=True, port=5173) 
+    app.run(debug=True, port=5000) 

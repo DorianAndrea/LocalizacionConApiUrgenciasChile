@@ -12,7 +12,7 @@ const ListarCentros = () => {
   const [centros, setCentros] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5173/api/centros/allcenters')
+    axios.get('http://127.0.0.1:5000/api/centros/allcenters')
       .then(response => {
         console.log("Centros recibidos desde el backend: ", response.data);
         setCentros(response.data);

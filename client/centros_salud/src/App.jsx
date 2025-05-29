@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-  fetch("http://localhost:5173/api/urgencia")
+  fetch("http://localhost:5000/api/urgencia")
     .then((res) => res.json())
     .then((data) => {
       const urgencias = data.map(u => ({
