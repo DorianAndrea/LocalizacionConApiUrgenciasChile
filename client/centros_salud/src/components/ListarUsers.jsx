@@ -22,6 +22,7 @@ const ListarUser = () => {
                 console.error('Error al obtener los usuarios:', error);
             }
         };
+        
         fetchUsers();
     }, []);
 

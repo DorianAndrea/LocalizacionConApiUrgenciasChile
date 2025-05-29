@@ -105,7 +105,7 @@ function App() {
         <Route path="/mapa" element={
           <>
             <Header />
-            <MapaContainer />
+            <MapaContainer centrosSalud={centrosSalud} />
             <Footer />
           </>
         } />

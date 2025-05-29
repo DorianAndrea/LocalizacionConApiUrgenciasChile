@@ -1,5 +1,4 @@
 [
-  [
     {
       "COD_REG": 1,
       "NOM_REG": "REGION DE TARAPACA",
@@ -1603,7 +1602,7 @@
       "NOMBRE": "SAPU PUCHUNCAVI",
       "NUMERO": 0,
       "DIRECCION": "BERNARDO O'HIGGINS S/N",
-      "FONO": "322575000",
+      "FONO": "322575173",
       "LATITUD": -32.725757,
       "LONGITUD": -71.416042,
       "REGION": "VALPARAISO",
@@ -1631,7 +1630,7 @@
       "NOMBRE": "SUR PUCHUNCAVI",
       "NUMERO": 0,
       "DIRECCION": "BERNARDO O'HIGGINS",
-      "FONO": "322575000",
+      "FONO": "322575173",
       "LATITUD": -32.725809,
       "LONGITUD": -71.416118,
       "REGION": "VALPARAISO",
@@ -10374,5 +10373,4 @@
       "PROVINCIA": "PUNILLA",
       "COMUNA": "SAN NICOLAS"
     }
-  ]
 ]
