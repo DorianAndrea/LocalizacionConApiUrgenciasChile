@@ -1,20 +1,52 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Mapa from "./Mapa";
 
-const MapaContainer = ({ centrosSalud }) =>  {
-  const location = useLocation();
-  const { latitude, longitude } = location.state || {};
+const MapaContainer = () => {
+  const [latitude, setLatitude] = useState(-33.4489); // Default: Santiago
+  const [longitude, setLongitude] = useState(-70.6693);
+  const [centrosSalud, setCentrosSalud] = useState([]);
+  const [error, setError] = useState(null);
 
-  const lat = latitude ? parseFloat(latitude) : -33.0469;
-  const lng = longitude ? parseFloat(longitude) : -71.6201;
+  useEffect(() => {
+    // Obtener ubicación del usuario
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (err) => {
+          console.warn("No se pudo obtener ubicación, usando valores por defecto.");
+        }
+      );
+    }
 
- return (
-    <Mapa 
-      latitude={lat} 
-      longitude={lng} 
-      centrosSalud={centrosSalud} 
-    />
+    // Obtener datos del backend
+    const fetchCentros = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/urgencia");
+         const data = await res.json();
+         console.log("Datos del backend:", data); 
+         
+         if (!Array.isArray(json.centros)) {
+          throw new Error("Formato inválido: se esperaba un array en 'centros'");
+        }
+
+         setCentrosSalud(data.centros || []);
+      } catch (err) {
+        console.error("Error al obtener centros:", err);
+        setError(`Error al cargar centros: ${err.message}`);
+      }
+    };
+
+    fetchCentros();
+  }, []);
+
+  return (
+    <div>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      <Mapa latitude={latitude} longitude={longitude} centrosSalud={centrosSalud} />
+    </div>
   );
 };
 

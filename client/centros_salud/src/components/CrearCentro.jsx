@@ -47,7 +47,7 @@ const CrearCentro = () => {
 
   const fetchRegionesAndComunas = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/data');
+      const response = await axios.get('http://localhost:5000/api/data');
       if(response.data && response.data.regiones && response.data.comunas){
         setRegiones(response.data.regiones);
         setComunas(response.data.comunas);
@@ -102,7 +102,7 @@ const CrearCentro = () => {
     if (Object.values(newErrors).some((error) => error !== null)) return;
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/centros', {
+      const response = await axios.post('http://localhost:5000/api/centros', {
         name_centro: formData.nameCentro,
         pag_web: formData.pagWeb,
         api_link: formData.apiLink,

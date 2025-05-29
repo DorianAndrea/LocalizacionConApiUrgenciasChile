@@ -7,12 +7,14 @@ import json
 @app.route('/api/urgencia')
 @cross_origin()
 def locate_centers():
-    import os
     ruta_json = os.path.join(app.root_path, 'static', 'establecimientos_salud_urgencias_chile.json')
+    print(f"📍 Ruta del JSON: {ruta_json}")
 
     try:
         with open(ruta_json, 'r', encoding='utf-8') as f:
             datos = json.load(f)
+
+        print(f"✅ Total registros cargados: {len(datos)}")
 
         centros = []
         for item in datos:
@@ -21,7 +23,7 @@ def locate_centers():
                     lat = float(item.get("LATITUD", 0))
                     lng = float(item.get("LONGITUD", 0))
                     if lat and lng:
-                        centros.append({
+                        centro = {
                             "nombre": item.get("NOMBRE", "Sin nombre"),
                             "latitud": lat,
                             "longitud": lng,
@@ -30,11 +32,17 @@ def locate_centers():
                             "telefono": item.get("FONO", ""),
                             "region": item.get("REGION", ""),
                             "comuna": item.get("COMUNA", "")
-                        })
-            except Exception:
-                continue  # salta registros corruptos
+                        }
+                        centros.append(centro)
+            except Exception as err_item:
+                print(f"⚠️ Error en item: {err_item}")
+                continue
 
+        print(f"Centros válidos: {len(centros)}")
+        if centros:
+            print(f"🔹 Primer centro: {centros[0]}")
         return jsonify({"centros": centros})
     
     except Exception as e:
+        print(f"Error cargando JSON: {e}")
         return jsonify({"centros": [], "error": str(e)})
