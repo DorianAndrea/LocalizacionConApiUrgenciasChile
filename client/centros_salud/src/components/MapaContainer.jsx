@@ -29,7 +29,7 @@ const MapaContainer = () => {
          console.log("Datos del backend:", data); 
          
          if (!Array.isArray(data.centros)) {
-          throw new Error("Formato inválido: se esperaba un array en 'centros'");
+          throw new Error("Formato inválido: se esperaba los 'centros'");
         }
 
          setCentrosSalud(data.centros || []);

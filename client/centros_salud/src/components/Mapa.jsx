@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 const libraries = ["places", "marker"];
 const mapId = "7d9e6a68029b6674";
@@ -70,11 +71,20 @@ const Mapa = ({ latitude, longitude, centrosSalud }) => {
 
           setUserLocation(userLatLng);
           googleMap.setCenter(userLatLng);
-
+          
+          // agregar un icono distinto a los centros de salud
+          const iconoUsuario = document.createElement('div');
+          iconoUsuario.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#4CAF50'" viewBox="0 0 24 24">
+           <path d="M13.49 5.48a1.5 1.5 0 1 0-2.98 0 1.5 1.5 0 0 0 2.98 0ZM10.75 9c-.66 0-1.28.32-1.68.85L7.46 
+           12.16a2.25 2.25 0 0 0 .24 2.96l.68.68-1.65 3.69a.75.75 0 1 0 1.36.61l1.84-4.11a.75.75 0 0 0-.14-.84l-.95-.95.6-.92 2.3 2.3-.79 3.57a.75.75 0 0 0 1.47.32l.85-3.86a.75.75 0 0 0-.2-.68l-1.75-1.75.9-1.38.5 1.23c.1.26.3.48.55.6l2.63 1.32a.75.75 0 0 0 .67-1.34l-2.22-1.1-1.01-2.5A1.75 1.75 0 0 0 10.75 9Z" />
+          </svg>
+          `
           new window.google.maps.marker.AdvancedMarkerElement({
             map: googleMap,
             position: userLatLng,
             title: "Tu ubicación",
+            content: iconoUsuario
           });
 
           let minDistance = Infinity;
@@ -121,8 +131,8 @@ const Mapa = ({ latitude, longitude, centrosSalud }) => {
 
   }, [isLoaded, loadError, latitude, longitude, centrosSalud]);
 
-  if (loadError) return <div>⚠️ Error al cargar Google Maps API</div>;
-  if (!isLoaded) return <div>⏳ Cargando mapa...</div>;
+  if (loadError) return <div>Error al cargar Google Maps API</div>;
+  if (!isLoaded) return <div>Cargando mapa...</div>;
 
   return (
     <>
