@@ -6,15 +6,15 @@ import json
 
 @app.route('/api/urgencia')
 @cross_origin()
-def locate_centers():
+def locate():
     ruta_json = os.path.join(app.root_path, 'static', 'establecimientos_salud_urgencias_chile.json')
-    print(f"📍 Ruta del JSON: {ruta_json}")
+    print(f"Ruta del JSON: {ruta_json}")
 
     try:
         with open(ruta_json, 'r', encoding='utf-8') as f:
             datos = json.load(f)
 
-        print(f"✅ Total registros cargados: {len(datos)}")
+        print(f" Total registros cargados: {len(datos)}")
 
         centros = []
         for item in datos:

@@ -24,11 +24,11 @@ const MapaContainer = () => {
     // Obtener datos del backend
     const fetchCentros = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/urgencia");
+        const res = await fetch("http://127.0.0.1:5173/api/urgencia");
          const data = await res.json();
          console.log("Datos del backend:", data); 
          
-         if (!Array.isArray(json.centros)) {
+         if (!Array.isArray(data.centros)) {
           throw new Error("Formato inválido: se esperaba un array en 'centros'");
         }
 

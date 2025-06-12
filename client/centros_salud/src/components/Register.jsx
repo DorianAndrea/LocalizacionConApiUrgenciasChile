@@ -49,7 +49,7 @@ const Register = () => {
     if (Object.values(newErrors).some((error) => error !== null)) return;
   
     try {
-      const response = await axios.post('http://localhost:5000/api/registro', {
+      const response = await axios.post('http://127.0.0.1:5173/api/registro', {
         first_name: firstName,
         last_name: lastName,
         rut: rut,

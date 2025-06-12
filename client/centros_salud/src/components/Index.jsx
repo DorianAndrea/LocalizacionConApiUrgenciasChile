@@ -17,7 +17,7 @@ function Home() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/data')
+        axios.get('http://127.0.0.1:5173/api/data')
         .then(response => {
             console.log("Datos obtenidos: ", response.data);
             if (response.data && response.data.comunas && response.data.regiones) {
@@ -37,7 +37,7 @@ function Home() {
         setSelectedRegion(regionId);
 
         axios
-        .get(`http://localhost:5000/api/comunas?region_id=${regionId}`)
+        .get(`http://127.0.0.1:5173/api/comunas?region_id=${regionId}`)
         .then((response) => {
             setComunasFiltradas(response.data.comunas);
         })
@@ -65,7 +65,7 @@ function Home() {
         console.log("Haciendo solicitud al backend con region:", selectedRegion, "y comuna:", selectedComuna);
 
         axios
-        .get('http://localhost:5000/api/centros', {
+        .get('http://127.0.0.1:5173/api/centros', {
             params: {
                 regionId: selectedRegion,
                 comunaId: selectedComuna,

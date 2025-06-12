@@ -24,7 +24,7 @@ const Centros_Valpo = () => {
     }
 
     axios
-      .get("http://localhost:5000/api/centros", {
+      .get("http://127.0.0.1:5173/api/centros", {
         params: {
           regionId,
           comunaId,

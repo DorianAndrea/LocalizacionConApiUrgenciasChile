@@ -59,7 +59,7 @@ flask_app/config/connectToProgreSql.py
 python3 server.py
 ```
 
-> Por defecto corre en: `http://localhost:5000`
+> Por defecto corre en: `http://localhost:5173`
 
 ---
 
@@ -92,7 +92,7 @@ npm run dev
 Asegúrate de que tus llamadas `fetch` o `axios` en React usen la URL del backend correctamente, por ejemplo:
 
 ```js
-fetch("http://localhost:5000/api/centers")
+fetch("http://localhost:5173/api/centers")
 ```
 
 ---
