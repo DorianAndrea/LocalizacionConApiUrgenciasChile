@@ -6,7 +6,7 @@ const MapaContainer = () => {
   const [longitude, setLongitude] = useState(-70.6693);
   const [centrosSalud, setCentrosSalud] = useState([]);
   const [error, setError] = useState(null);
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     // Obtener ubicación del usuario
     if (navigator.geolocation) {
@@ -16,7 +16,9 @@ const MapaContainer = () => {
           setLongitude(position.coords.longitude);
         },
         (err) => {
-          console.warn("No se pudo obtener ubicación, usando valores por defecto.");
+          console.warn(
+            "No se pudo obtener ubicación, usando valores por defecto."
+          );
         }
       );
     }
@@ -24,15 +26,15 @@ const MapaContainer = () => {
     // Obtener datos del backend
     const fetchCentros = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5173/api/urgencia");
-         const data = await res.json();
-         console.log("Datos del backend:", data); 
-         
-         if (!Array.isArray(data.centros)) {
+        const res = await fetch(`${apiUrl}/api/urgencia`);
+        const data = await res.json();
+        console.log("Datos del backend:", data);
+
+        if (!Array.isArray(data.centros)) {
           throw new Error("Formato inválido: se esperaba los 'centros'");
         }
 
-         setCentrosSalud(data.centros || []);
+        setCentrosSalud(data.centros || []);
       } catch (err) {
         console.error("Error al obtener centros:", err);
         setError(`Error al cargar centros: ${err.message}`);
@@ -45,7 +47,11 @@ const MapaContainer = () => {
   return (
     <div>
       {error && <div style={{ color: "red" }}>{error}</div>}
-      <Mapa latitude={latitude} longitude={longitude} centrosSalud={centrosSalud} />
+      <Mapa
+        latitude={latitude}
+        longitude={longitude}
+        centrosSalud={centrosSalud}
+      />
     </div>
   );
 };

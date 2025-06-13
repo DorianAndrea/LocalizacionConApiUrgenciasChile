@@ -18,6 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [errors, setErrors] = useState({
     firstName:null,
     lastName:null,
@@ -49,7 +50,7 @@ const Register = () => {
     if (Object.values(newErrors).some((error) => error !== null)) return;
   
     try {
-      const response = await axios.post('http://127.0.0.1:5173/api/registro', {
+      const response = await axios.post(`${apiUrl}/api/registro`, {
         first_name: firstName,
         last_name: lastName,
         rut: rut,

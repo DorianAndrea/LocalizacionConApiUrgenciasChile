@@ -15,9 +15,9 @@ function Home() {
     const [showCentrosValpo, setShowCentrosValpo] = useState(false);
     const [openLocationPopup, setOpenLocationPopup] = useState(true);
     const navigate = useNavigate();
-
+    const apiUrl = import.meta.env.VITE_API_URL;    
     useEffect(() => {
-        axios.get('http://127.0.0.1:5173/api/data')
+        axios.get(`${apiUrl}/api/data`)
         .then(response => {
             console.log("Datos obtenidos: ", response.data);
             if (response.data && response.data.comunas && response.data.regiones) {
@@ -37,7 +37,7 @@ function Home() {
         setSelectedRegion(regionId);
 
         axios
-        .get(`http://127.0.0.1:5173/api/comunas?region_id=${regionId}`)
+        .get(`${apiUrl}/api/comunas?region_id=${regionId}`)
         .then((response) => {
             setComunasFiltradas(response.data.comunas);
         })
@@ -65,7 +65,7 @@ function Home() {
         console.log("Haciendo solicitud al backend con region:", selectedRegion, "y comuna:", selectedComuna);
 
         axios
-        .get('http://127.0.0.1:5173/api/centros', {
+        .get(`${apiUrl}/api/centros`, {
             params: {
                 regionId: selectedRegion,
                 comunaId: selectedComuna,

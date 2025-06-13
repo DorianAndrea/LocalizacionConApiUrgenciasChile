@@ -10,9 +10,9 @@ import Paper from '@mui/material/Paper';
 
 const ListarCentros = () => {
   const [centros, setCentros] = useState([]);
-
+  const apiUrl = import.meta.env.VITE_API_URL; 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5173/api/centros/allcenters')
+    axios.get(`${apiUrl}/api/centros/allcenters`)
       .then(response => {
         console.log("Centros recibidos desde el backend: ", response.data);
         setCentros(response.data);

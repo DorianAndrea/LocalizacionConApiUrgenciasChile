@@ -4,13 +4,14 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ListarCentros from './ListarCentros';
 
+
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showListarCentros, setShowListarCentros] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_API_URL;  
   const handleSubmit = async (e) => {
     e.preventDefault();
     //validar que los campos no esten vacios

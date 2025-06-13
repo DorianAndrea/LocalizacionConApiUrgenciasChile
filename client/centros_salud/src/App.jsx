@@ -22,7 +22,7 @@ function App() {
   // Definir el estado del drawer
   const [mobileOpen, setMobileOpen] = useState(false);
   const [centrosSalud, setCentrosSalud] = useState([]);
-
+const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     // Verificar si hay datos de usuario en el almacenamiento local
     const storedUser = localStorage.getItem('user');
@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-  fetch("http://localhost:5173/api/urgencia")
+  fetch(`${apiUrl}/api/urgencia`)
     .then((res) => res.json())
     .then((data) => {
       const urgencias = data.map(u => ({

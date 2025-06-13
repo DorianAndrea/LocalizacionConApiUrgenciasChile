@@ -10,13 +10,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
+const apiUrl = import.meta.env.VITE_API_URL;
 const ListarUser = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:5173/api/users');
+                const response = await axios.get(`${apiUrl}/api/centros/allcenters`);
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error al obtener los usuarios:', error);
