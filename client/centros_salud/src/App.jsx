@@ -14,7 +14,6 @@ import Login from './components/Login';
 import Mision from './components/Mision';
 import Nosotros from './components/Nosotros';
 import Vision from './components/Vision';
-import Centros_Valpo from './components/Centros_Valpo';
 
 
 function App() {
@@ -118,7 +117,6 @@ function App() {
               <Route path="mision" element={<Mision />} />
               <Route path="vision" element={<Vision />} />
               <Route path="login" element={<Login setUser={setUser} />} />
-              <Route path="centros" element={<Centros_Valpo />} />
             </Routes>
             <Footer />
           </div>

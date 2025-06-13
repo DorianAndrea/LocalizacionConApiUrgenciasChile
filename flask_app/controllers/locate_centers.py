@@ -28,6 +28,7 @@ def locate():
                             "latitud": lat,
                             "longitud": lng,
                             "tipo": item.get("TIPO", ""),
+                            "numero": item.get("NUMERO", ""),
                             "direccion": item.get("DIRECCION", ""),
                             "telefono": item.get("FONO", ""),
                             "region": item.get("REGION", ""),
@@ -40,7 +41,7 @@ def locate():
 
         print(f"Centros válidos: {len(centros)}")
         if centros:
-            print(f"🔹 Primer centro: {centros[0]}")
+            print(f"Primer centro: {centros[0]}")
         return jsonify({"centros": centros})
     
     except Exception as e:

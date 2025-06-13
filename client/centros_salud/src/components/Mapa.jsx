@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 const libraries = ["places", "marker"];
 const mapId = "7d9e6a68029b6674";
@@ -35,7 +34,7 @@ const Mapa = ({ latitude, longitude, centrosSalud }) => {
       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
       Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return (R * c).toFixed(2);
+    return (R * c).toFixed(1);
   };
 
   useEffect(() => {
@@ -147,6 +146,8 @@ const Mapa = ({ latitude, longitude, centrosSalud }) => {
             <strong>{nearestCentro?.nombre}</strong>
             <br />
             <strong>Dirección:</strong> {nearestCentro?.direccion}
+            <br />
+            <strong>Número:</strong> {nearestCentro?.numero}
             <br />
             <strong>Tipo:</strong> {nearestCentro?.tipo}
             <br />
