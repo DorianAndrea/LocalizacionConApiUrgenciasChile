@@ -4,7 +4,7 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ListarCentros from './ListarCentros';
 
-
+const apiUrl = import.meta.env.VITE_API_URL; 
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ const Login = (props) => {
     }
 
     try {
-      const response = await axios.post('${apiUrl}/api/login', { 
+      const response = await axios.post(`${apiUrl}/api/login`, { 
         email,
         password,
       });

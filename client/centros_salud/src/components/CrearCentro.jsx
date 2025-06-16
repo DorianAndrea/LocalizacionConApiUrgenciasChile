@@ -13,6 +13,7 @@ import {
   InputLabel,
   Grid,
 } from '@mui/material';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const CrearCentro = () => {
   const [selectedRegion, setSelectedRegion] = useState('');

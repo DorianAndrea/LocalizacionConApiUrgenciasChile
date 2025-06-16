@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 
-
+const apiUrl = import.meta.env.VITE_API_URL; 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -18,7 +18,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_URL;
   const [errors, setErrors] = useState({
     firstName:null,
     lastName:null,

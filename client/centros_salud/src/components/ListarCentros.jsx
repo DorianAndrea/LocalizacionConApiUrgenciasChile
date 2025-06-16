@@ -7,8 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+const apiUrl = import.meta.env.VITE_API_URL; 
 
-const ListarCentros = () => {
+ const ListarCentros = () => {
   const [centros, setCentros] = useState([]);
   const apiUrl = import.meta.env.VITE_API_URL; 
   useEffect(() => {
