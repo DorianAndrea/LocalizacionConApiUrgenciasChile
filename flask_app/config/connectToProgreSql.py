@@ -35,5 +35,5 @@ class PostgreSQLConnection:
             
 
 # Función para conectar a PostgreSQL
-def connectToPostgreSQL(db):
-    return PostgreSQLConnection(db)
+def connectToPostgreSQL(_=None):
+    return PostgreSQLConnection()
