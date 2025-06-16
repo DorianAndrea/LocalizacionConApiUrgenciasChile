@@ -1,16 +1,11 @@
 import psycopg2
 from psycopg2.extras import DictCursor
-
+import os 
 class PostgreSQLConnection:
-    def __init__(self, db):
-        # Cambia estos datos según tu configuración en PostgreSQL
+    def __init__(self):
         self.connection = psycopg2.connect(
-            host='localhost',  # Dirección del servidor
-            user='postgres',   # Usuario de PostgreSQL
-            password='1254',  # Tu contraseña
-            dbname=db,  # Nombre de la base de datos
-            port=5432, # Puerto por defecto de PostgreSQL
-            options='-c search_path=public'
+            os.getenv("DATABASE_URL"),
+            cursor_factory=DictCursor
         )
         self.connection.autocommit = True
 
