@@ -3,14 +3,13 @@ from flask import jsonify, request
 from flask_app.models.comuna import Comuna
 from flask_app.models.region import Region
 
-
 @app.route('/api/data')
 def get_data():
     comunas = Comuna.get_all_comunas()
     regiones = Region.get_all()
     data = {
         'comunas': [comuna.__dict__ for comuna in comunas],
-        'regiones':[region.__dict__ for region in regiones]
+        'regiones': [region.__dict__ for region in regiones]
     }
     return jsonify(data)
 
@@ -22,5 +21,3 @@ def get_filtered_comunas():
         'comunas': [comuna.__dict__ for comuna in comunas]
     }
     return jsonify(data)
-
-

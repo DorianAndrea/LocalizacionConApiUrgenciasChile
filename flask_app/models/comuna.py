@@ -1,4 +1,4 @@
-from flask_app.config.connectToProgreSql import connectToPostgreSQL;
+from flask_app.config.connectToProgreSql import connectToPostgreSQL
 from flask import flash
 
 class Comuna:
@@ -13,23 +13,16 @@ class Comuna:
         if len(form['name_comuna']) < 1:
             flash("Debes seleccionar una comuna")
             is_valid = False
-        
         return is_valid
-    
+
     @classmethod
-    def get_all_comunas (cls):
+    def get_all_comunas(cls):
         query = "SELECT * FROM comunas;"
         results = connectToPostgreSQL('postgres').query_db(query)
-        comunas= []
-        for row in results:
-            comunas.append(cls(row))
-        return comunas
-    
+        return [cls(row) for row in results]
+
     @classmethod
     def get_comunas_by_region(cls, region_id):
         query = "SELECT * FROM comunas WHERE region_id = %(region_id)s;"
         results = connectToPostgreSQL('postgres').query_db(query, {'region_id': region_id})
-        comunas = []
-        for row in results:
-            comunas.append(cls(row))
-        return comunas
+        return [cls(row) for row in results]
