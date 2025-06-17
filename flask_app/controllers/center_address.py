@@ -47,3 +47,13 @@ def crear_centro():
     except Exception as e:
         print("Error al crear centro:", e)
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/test', methods=['GET'])
+def test_db_connection():
+    try:
+        from flask_app.config.connectToProgreSql import PostgreSQLConnection
+        db = PostgreSQLConnection()
+        result = db.query_db("SELECT NOW();")
+        return jsonify({"conexion": "exitosa", "timestamp": result})
+    except Exception as e:
+        return jsonify({"conexion": "fallida", "error": str(e)})
