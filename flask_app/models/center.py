@@ -1,5 +1,6 @@
 from flask import flash
-from flask_app.config.connectToProgreSql import connectToPostgreSQL
+from flask_app.config.connectToProgreSql import PostgreSQLConnection
+
 
 class Center:
     def __init__(self,data):

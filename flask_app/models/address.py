@@ -1,4 +1,5 @@
-from flask_app.config.connectToProgreSql import connectToPostgreSQL
+from flask_app.config.connectToProgreSql import PostgreSQLConnection
+
 
 class Address:
     def __init__(self, data):
@@ -14,7 +15,7 @@ class Address:
     @classmethod
     def get_all_address_whith_comuna(cls):
         query = "SELECT * FROM address JOIN comunas ON address.comuna_id = comunas.id;"
-        results = connectToPostgreSQL('postgres').query_db(query)
+        results = PostgreSQLConnection('postgres').query_db(query)
         direcciones = []
         for row in results:
             direcciones.append(cls(row))
@@ -23,7 +24,7 @@ class Address:
     @classmethod
     def create(cls, data):
         query = "INSERT INTO address (address, number_add, phone, cell_phone, comuna_id) VALUES (%(address)s, %(number_add)s, %(phone)s, %(cell_phone)s, %(comuna_id)s) RETURNING id;"
-        result = connectToPostgreSQL('postgres').query_db(query, data)
+        result = PostgreSQLConnection('postgres').query_db(query, data)
         return result
     
     

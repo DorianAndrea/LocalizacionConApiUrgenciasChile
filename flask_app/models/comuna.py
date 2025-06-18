@@ -1,4 +1,5 @@
-from flask_app.config.connectToProgreSql import connectToPostgreSQL
+from flask_app.config.connectToProgreSql import PostgreSQLConnection
+
 from flask import flash
 
 class Comuna:
@@ -18,11 +19,11 @@ class Comuna:
     @classmethod
     def get_all_comunas(cls):
         query = "SELECT * FROM comunas;"
-        results = connectToPostgreSQL('postgres').query_db(query)
+        results = PostgreSQLConnection('postgres').query_db(query)
         return [cls(row) for row in results]
 
     @classmethod
     def get_comunas_by_region(cls, region_id):
         query = "SELECT * FROM comunas WHERE region_id = %(region_id)s;"
-        results = connectToPostgreSQL('postgres').query_db(query, {'region_id': region_id})
+        results = PostgreSQLConnection('postgres').query_db(query, {'region_id': region_id})
         return [cls(row) for row in results]

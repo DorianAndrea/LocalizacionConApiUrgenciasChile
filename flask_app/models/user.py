@@ -1,4 +1,5 @@
-from flask_app.config.connectToProgreSql import connectToPostgreSQL
+from flask_app.config.connectToProgreSql import PostgreSQLConnection
+
 from flask import flash
 from flask_bcrypt import Bcrypt 
 import re

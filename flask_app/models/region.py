@@ -1,4 +1,5 @@
-from flask_app.config.connectToProgreSql import connectToPostgreSQL
+from flask_app.config.connectToProgreSql import PostgreSQLConnection
+
 from flask import flash
 
 class Region:
@@ -17,5 +18,5 @@ class Region:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM regiones;"
-        results = connectToPostgreSQL('postgres').query_db(query)
+        results = PostgreSQLConnection('postgres').query_db(query)
         return [cls(row) for row in results]
