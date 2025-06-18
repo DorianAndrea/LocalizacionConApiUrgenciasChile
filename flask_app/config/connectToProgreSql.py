@@ -7,7 +7,6 @@ class PostgreSQLConnection:
         db_url = os.getenv("DATABASE_URL")  # ✅ correcto
         if not db_url:
             raise Exception("DATABASE_URL no está definida en el entorno")
-        
         try:
             self.connection = psycopg2.connect(
                 db_url,
