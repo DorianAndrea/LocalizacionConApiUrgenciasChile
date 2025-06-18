@@ -1,10 +1,10 @@
+import os
 import psycopg2
 from psycopg2.extras import DictCursor
-import os
 
 class PostgreSQLConnection:
     def __init__(self):
-        db_url = os.getenv("DATABASE_URL")  # ✅ correcto
+        db_url = os.getenv("DATABASE_URL")
         if not db_url:
             raise Exception("DATABASE_URL no está definida en el entorno")
         try:
