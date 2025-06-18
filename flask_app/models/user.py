@@ -50,7 +50,7 @@ class User:
         VALUES(%(first_name)s, %(last_name)s, %(rut)s, %(email)s, %(password)s)
         RETURNING id;
         """
-        result = connectToPostgreSQL('postgres').query_db(query, data_to_insert)
+        result = PostgreSQLConnection('postgres').query_db(query, data_to_insert)
         return result
 
     @staticmethod
@@ -87,7 +87,7 @@ class User:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users"
-        results = connectToPostgreSQL('postgres').query_db(query)
+        results = PostgreSQLConnection('postgres').query_db(query)
         users = []
         for result in results:
             users.append(cls(result))
@@ -97,7 +97,7 @@ class User:
     def get_by_email(cls, email):
         query = "SELECT * FROM users WHERE email = %(email)s"
         data = {'email': email}
-        result = connectToPostgreSQL('postgres').query_db(query, data)
+        result = PostgreSQLConnection('postgres').query_db(query, data)
         if result:
             return cls(result[0])
         return None
@@ -105,6 +105,6 @@ class User:
     @classmethod
     def get_by_id(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s"
-        result = connectToPostgreSQL('postgres').query_db(query, data)
+        result = PostgreSQLConnection('postgres').query_db(query, data)
         user = cls(result[0])
         return user

@@ -48,7 +48,7 @@ class Center:
             ORDER BY c.name_centro DESC;
         """
         data = {"comuna_id": comuna_id}
-        results = connectToPostgreSQL('postgres').query_db(query, data)
+        results = PostgreSQLConnection('postgres').query_db(query, data)
 
         if not results:
             return []
@@ -74,7 +74,7 @@ class Center:
     @classmethod
     def get_all_center_with_address_and_comunas(cls):
         query= "SELECT * FROM centers JOIN address ON centers.address_id = address.id ; "
-        results = connectToPostgreSQL('postgres').query_db(query)
+        results = PostgreSQLConnection('postgres').query_db(query)
         centers = []
         for row in results:
             centers.append(cls(row))
@@ -82,7 +82,7 @@ class Center:
     
     @classmethod
     def create_center(cls, data):
-        db = connectToPostgreSQL('postgres')
+        db = PostgreSQLConnection('postgres')
         
         # 1. Insertar en address
         query_address = """
@@ -139,5 +139,5 @@ class Center:
             JOIN comunas co ON a.comuna_id = co.id
             ORDER BY co.name_comuna DESC;
         """
-        connection = connectToPostgreSQL("postgres")
+        connection = PostgreSQLConnection("postgres")
         return connection.query_db(query)
