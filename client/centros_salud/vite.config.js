@@ -1,6 +1,6 @@
 
 export default {
-  base: '/LocalizacionConApiUrgenciasChile/', 
+  base: '/', 
 };
 
 
