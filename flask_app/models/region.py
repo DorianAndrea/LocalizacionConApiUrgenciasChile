@@ -3,9 +3,9 @@ from flask_app.config.connectToProgreSql import PostgreSQLConnection
 from flask import flash
 
 class Region:
-    def __init__(self, data):
-        self.id = data['id']
-        self.region_name = data['region_name']
+    def __init__(self, id, region_name):
+        self.id = id
+        self.region_name = region_name
 
     @staticmethod
     def validate_region(form):
