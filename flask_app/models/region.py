@@ -18,5 +18,7 @@ class Region:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM regiones;"
-        results = PostgreSQLConnection('postgres').query_db(query)
-        return [cls(row) for row in results]
+        results = PostgreSQLConnection().query_db(query)
+        print("Intentando obtener regiones...")
+        print("Resultado:", results)
+        return [cls(**row) for row in results] 

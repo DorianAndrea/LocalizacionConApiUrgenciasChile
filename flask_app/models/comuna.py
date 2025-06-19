@@ -19,11 +19,13 @@ class Comuna:
     @classmethod
     def get_all_comunas(cls):
         query = "SELECT * FROM comunas;"
-        results = PostgreSQLConnection('postgres').query_db(query)
-        return [cls(row) for row in results]
+        results = PostgreSQLConnection().query_db(query)
+        return [cls(**row) for row in results] 
 
     @classmethod
     def get_comunas_by_region(cls, region_id):
         query = "SELECT * FROM comunas WHERE region_id = %(region_id)s;"
         results = PostgreSQLConnection('postgres').query_db(query, {'region_id': region_id})
+        print("Intentando obtener regiones...")
+        print("Resultado:", results)
         return [cls(row) for row in results]

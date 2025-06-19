@@ -7,6 +7,8 @@ from flask_app.models.region import Region
 def get_data():
     comunas = Comuna.get_all_comunas()
     regiones = Region.get_all()
+    print("COMUNAS", comunas)
+    print("REGIONES", regiones)
     data = {
         'comunas': [comuna.__dict__ for comuna in comunas],
         'regiones': [region.__dict__ for region in regiones]
